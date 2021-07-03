@@ -5,34 +5,23 @@ import { ConnectedRouter } from "connected-react-router";
 
 import { routes } from "./routes";
 import { Page404 } from "./shared/components/Page404";
+import {Container} from "@material-ui/core";
+import {Header} from "./shared/components/Header";
 
 export function AppContainer(props) {
   const { history } = props;
 
   return (
     <ConnectedRouter history={history}>
-      <div className="ws">
-        <div className="ws__cont">
-
-          <div className="ws__content">
-            <Switch>
-              {routes.map(route => (
-                <Route key={route.key} path={route.path} exact={route.exact} component={route.component} />
-              ))}
-              <Route path="*" exact render={() => <Page404 />} />
-            </Switch>
-          </div>
-
-          <div className="ws__header">
-
-          </div>
-
-          <div className="ws__footer">
-
-          </div>
-
-        </div>
-      </div>
+        <Header/>
+            <Container>
+              <Switch>
+                {routes.map(route => (
+                    <Route key={route.key} path={route.path} exact={route.exact} component={route.component} />
+                ))}
+                <Route path="*" exact render={() => <Page404 />} />
+              </Switch>
+            </Container>
     </ConnectedRouter>
   );
 }
